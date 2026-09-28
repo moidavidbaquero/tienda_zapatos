@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detalle de producto UrbanStep." />
+    <title>Producto | UrbanStep</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">URBAN<span>STEP</span></a
+        ><button class="menu-toggle" id="menu-toggle">☰</button>
+        <nav id="main-nav" class="main-nav">
+          <a href="index.html">Inicio</a
+          ><a href="productos.html?categoria=hombre">Hombre</a
+          ><a href="productos.html?categoria=mujer">Mujer</a
+          ><a href="productos.html?categoria=nino">Niño</a
+          ><a href="productos.html?categoria=nina">Niña</a
+          ><a href="productos.html?oferta=1">Ofertas</a>
+        </nav>
+        <div class="header-actions">
+          <form class="search-box" id="header-search">
+            <input
+              id="header-search-input"
+              type="search"
+              placeholder="Buscar zapatos..."
+            /><button>⌕</button>
+          </form>
+          <a href="favoritos.html" class="icon-link"
+            >♡ <span id="favorites-count">0</span></a
+          ><a href="login.html" class="icon-link">◯</a
+          ><a href="carrito.html" class="icon-link"
+            >🛒 <span id="cart-count">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="container product-detail-page">
+      <div class="breadcrumb">
+        <a href="productos.html">Productos</a> / Detalle
+      </div>
+      <div id="product-detail"></div>
+      <section class="section related-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">TAMBIÉN TE PUEDE GUSTAR</p>
+            <h2>Productos relacionados</h2>
+          </div>
+        </div>
+        <div id="related-products" class="product-grid"></div>
+      </section>
+    </main>
+    <script src="js/productos.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/producto.js"></script>
+  </body>
+</html>

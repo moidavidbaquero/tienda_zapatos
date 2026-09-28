@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Finaliza tu compra en UrbanStep." />
+    <title>Checkout | UrbanStep</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">URBAN<span>STEP</span></a>
+        <nav class="main-nav checkout-nav">
+          <a href="index.html">UrbanStep</a
+          ><a href="carrito.html">← Volver al carrito</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container checkout-page">
+      <div class="page-heading">
+        <p class="eyebrow">CHECKOUT</p>
+        <h1>Finaliza tu compra</h1>
+      </div>
+      <div id="checkout-alert" class="form-alert"></div>
+      <div id="checkout-success" class="success-screen hidden"></div>
+      <div id="checkout-layout" class="checkout-layout">
+        <form id="checkout-form" class="checkout-form" novalidate>
+          <section class="form-card">
+            <h2>1. Información personal</h2>
+            <div class="form-grid two">
+              <label
+                >Nombre<input
+                  name="nombre"
+                  required
+                  autocomplete="given-name" /><small
+                  class="field-error"
+                ></small></label
+              ><label
+                >Apellido<input
+                  name="apellido"
+                  required
+                  autocomplete="family-name" /><small
+                  class="field-error"
+                ></small></label
+              ><label
+                >Correo<input
+                  name="correo"
+                  type="email"
+                  required
+                  autocomplete="email" /><small
+                  class="field-error"
+                ></small></label
+              ><label
+                >Teléfono<input
+                  name="telefono"
+                  inputmode="tel"
+                  required
+                  autocomplete="tel" /><small class="field-error"></small
+              ></label>
+            </div>
+          </section>
+          <section class="form-card">
+            <h2>2. Dirección de entrega</h2>
+            <div class="form-grid two">
+              <label
+                >Departamento<select name="departamento" required>
+                  <option value="">Selecciona</option>
+                  <option>Santander</option>
+                  <option>Antioquia</option>
+                  <option>Cundinamarca</option>
+                  <option>Atlántico</option>
+                  <option>Valle del Cauca</option>
+                  <option>Bolívar</option>
+                  <option>Norte de Santander</option></select
+                ><small class="field-error"></small></label
+              ><label
+                >Ciudad<input name="ciudad" required /><small
+                  class="field-error"
+                ></small></label
+              ><label class="full"
+                >Dirección<input
+                  name="direccion"
+                  required
+                  autocomplete="street-address" /><small
+                  class="field-error"
+                ></small></label
+              ><label
+                >Código postal<input
+                  name="postal"
+                  inputmode="numeric"
+                  required /><small class="field-error"></small
+              ></label>
+            </div>
+          </section>
+          <section class="form-card">
+            <h2>3. Método de pago</h2>
+            <div class="payment-methods">
+              <label class="payment-option"
+                ><input type="radio" name="pago" value="tarjeta" checked /><span
+                  >💳 <strong>Tarjeta</strong
+                  ><small>Crédito o débito</small></span
+                ></label
+              ><label class="payment-option"
+                ><input type="radio" name="pago" value="pse" /><span
+                  >🏦 <strong>PSE</strong
+                  ><small>Pago seguro en línea</small></span
+                ></label
+              ><label class="payment-option"
+                ><input type="radio" name="pago" value="nequi" /><span
+                  >📱 <strong>Nequi</strong
+                  ><small>Billetera digital</small></span
+                ></label
+              ><label class="payment-option"
+                ><input type="radio" name="pago" value="transferencia" /><span
+                  >🔁 <strong>Transferencia</strong
+                  ><small>Transferencia bancaria</small></span
+                ></label
+              >
+            </div>
+            <div id="payment-extra" class="payment-extra"></div>
+          </section>
+          <button class="btn btn-primary btn-block btn-large" type="submit">
+            Confirmar pedido
+          </button>
+          <p class="demo-note">Demo frontend: no se procesan pagos reales.</p>
+        </form>
+        <aside id="checkout-summary" class="summary-card"></aside>
+      </div>
+    </main>
+    <script src="js/productos.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/checkout.js"></script>
+  </body>
+</html>

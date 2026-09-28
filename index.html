@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Encuentra zapatos para hombre, mujer, niño y niña con estilo, comodidad y excelentes precios."
+    />
+    <title>UrbanStep | Zapatos para toda la familia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="UrbanStep inicio"
+          >URBAN<span>STEP</span></a
+        >
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+          ☰
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="productos.html?categoria=hombre">Hombre</a>
+          <a href="productos.html?categoria=mujer">Mujer</a>
+          <a href="productos.html?categoria=nino">Niño</a>
+          <a href="productos.html?categoria=nina">Niña</a>
+          <a href="productos.html?oferta=1">Ofertas</a>
+        </nav>
+        <div class="header-actions">
+          <form class="search-box" id="header-search">
+            <input
+              id="header-search-input"
+              type="search"
+              placeholder="Buscar zapatos..."
+              aria-label="Buscar zapatos"
+            />
+            <button type="submit" aria-label="Buscar">⌕</button>
+          </form>
+          <a href="favoritos.html" class="icon-link" aria-label="Favoritos"
+            >♡ <span id="favorites-count">0</span></a
+          >
+          <a href="login.html" class="icon-link" aria-label="Usuario">◯</a>
+          <a
+            href="carrito.html"
+            class="icon-link cart-link"
+            aria-label="Carrito"
+            >🛒 <span id="cart-count">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <p class="eyebrow">NUEVA COLECCIÓN 2026</p>
+          <h1>Encuentra tu estilo</h1>
+          <p>Zapatos para toda la familia con el mejor estilo y precio.</p>
+          <a class="btn btn-primary" href="productos.html">Comprar ahora</a>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PARA TODOS</p>
+            <h2>Compra por categoría</h2>
+          </div>
+          <a href="productos.html" class="text-link">Ver todo →</a>
+        </div>
+        <div class="category-grid">
+          <a
+            class="category-card category-men"
+            href="productos.html?categoria=hombre"
+          >
+            <div>
+              <span>👟</span>
+              <h3>Hombre</h3>
+              <p>Estilo urbano y deportivo</p>
+              <strong>Comprar →</strong>
+            </div>
+          </a>
+          <a
+            class="category-card category-women"
+            href="productos.html?categoria=mujer"
+          >
+            <div>
+              <span>👠</span>
+              <h3>Mujer</h3>
+              <p>Elegancia para cada ocasión</p>
+              <strong>Comprar →</strong>
+            </div>
+          </a>
+          <a
+            class="category-card category-boy"
+            href="productos.html?categoria=nino"
+          >
+            <div>
+              <span>👦</span>
+              <h3>Niño</h3>
+              <p>Comodidad para sus aventuras</p>
+              <strong>Comprar →</strong>
+            </div>
+          </a>
+          <a
+            class="category-card category-girl"
+            href="productos.html?categoria=nina"
+          >
+            <div>
+              <span>👧</span>
+              <h3>Niña</h3>
+              <p>Diseños llenos de personalidad</p>
+              <strong>Comprar →</strong>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SELECCIÓN URBANSTEP</p>
+              <h2>Productos destacados</h2>
+            </div>
+            <a href="productos.html" class="text-link">Ver todos →</a>
+          </div>
+          <div id="productos-destacados" class="product-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo logo-footer" href="index.html"
+            >URBAN<span>STEP</span></a
+          >
+          <p>Estilo, comodidad y precio para toda la familia.</p>
+        </div>
+        <div>
+          <h4>Compra</h4>
+          <a href="productos.html?categoria=hombre">Hombre</a
+          ><a href="productos.html?categoria=mujer">Mujer</a
+          ><a href="productos.html?categoria=nino">Niño</a
+          ><a href="productos.html?categoria=nina">Niña</a>
+        </div>
+        <div>
+          <h4>Ayuda</h4>
+          <a href="carrito.html">Carrito</a
+          ><a href="favoritos.html">Favoritos</a
+          ><a href="login.html">Mi cuenta</a>
+        </div>
+        <div>
+          <h4>Información</h4>
+          <p>Demo frontend. No se procesan pagos reales.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 UrbanStep · Proyecto académico frontend
+      </div>
+    </footer>
+
+    <script src="js/productos.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProductGrid(
+          productos.filter((p) => p.destacado).slice(0, 8),
+          "productos-destacados",
+        );
+      });
+    </script>
+  </body>
+</html>

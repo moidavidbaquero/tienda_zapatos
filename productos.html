@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Catálogo de zapatos UrbanStep con filtros, búsqueda y ordenamiento."
+    />
+    <title>Productos | UrbanStep</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">URBAN<span>STEP</span></a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+          ☰
+        </button>
+        <nav id="main-nav" class="main-nav">
+          <a href="index.html">Inicio</a
+          ><a href="productos.html?categoria=hombre">Hombre</a
+          ><a href="productos.html?categoria=mujer">Mujer</a
+          ><a href="productos.html?categoria=nino">Niño</a
+          ><a href="productos.html?categoria=nina">Niña</a
+          ><a href="productos.html?oferta=1">Ofertas</a>
+        </nav>
+        <div class="header-actions">
+          <form class="search-box" id="header-search">
+            <input
+              id="header-search-input"
+              type="search"
+              placeholder="Buscar zapatos..."
+              aria-label="Buscar"
+            /><button>⌕</button>
+          </form>
+          <a href="favoritos.html" class="icon-link"
+            >♡ <span id="favorites-count">0</span></a
+          ><a href="login.html" class="icon-link">◯</a
+          ><a href="carrito.html" class="icon-link"
+            >🛒 <span id="cart-count">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container catalog-page">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> / Productos</div>
+      <div class="catalog-title">
+        <div>
+          <p class="eyebrow">CATÁLOGO</p>
+          <h1 id="catalog-title">Todos los zapatos</h1>
+          <p id="product-count" class="muted"></p>
+        </div>
+        <button id="clear-filters" class="btn btn-outline">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filters-panel">
+          <div class="filter-mobile-head">
+            <strong>Filtros</strong><button id="close-filters">×</button>
+          </div>
+          <div class="filter-group">
+            <label for="filter-category">Categoría</label
+            ><select id="filter-category">
+              <option value="">Todas</option>
+              <option value="hombre">Hombre</option>
+              <option value="mujer">Mujer</option>
+              <option value="nino">Niño</option>
+              <option value="nina">Niña</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Precio</label>
+            <div class="price-inputs">
+              <input
+                id="min-price"
+                type="number"
+                min="0"
+                placeholder="Mínimo"
+              /><input
+                id="max-price"
+                type="number"
+                min="0"
+                placeholder="Máximo"
+              />
+            </div>
+          </div>
+          <div class="filter-group">
+            <label for="filter-color">Color</label
+            ><select id="filter-color">
+              <option value="">Todos</option>
+              <option>Negro</option>
+              <option>Blanco</option>
+              <option>Azul</option>
+              <option>Rojo</option>
+              <option>Rosa</option>
+              <option>Beige</option>
+              <option>Verde</option>
+              <option>Gris</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-size">Talla</label
+            ><select id="filter-size">
+              <option value="">Todas</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+              <option>32</option>
+              <option>33</option>
+              <option>34</option>
+              <option>35</option>
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-type">Tipo de zapato</label
+            ><select id="filter-type">
+              <option value="">Todos</option>
+              <option>Tenis</option>
+              <option>Botas</option>
+              <option>Sandalias</option>
+              <option>Casual</option>
+              <option>Formal</option>
+              <option>Escolar</option>
+            </select>
+          </div>
+          <label class="check-row"
+            ><input id="filter-discount" type="checkbox" /> Solo productos en
+            oferta</label
+          >
+        </aside>
+
+        <section class="catalog-results">
+          <div class="catalog-toolbar">
+            <button id="open-filters" class="btn btn-outline mobile-only">
+              ☰ Filtros
+            </button>
+            <form id="catalog-search" class="catalog-search">
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Buscar por nombre, marca o tipo..."
+              /><button class="btn btn-dark">Buscar</button>
+            </form>
+            <select id="sort-products" aria-label="Ordenar productos">
+              <option value="recent">Más recientes</option>
+              <option value="priceAsc">Precio menor a mayor</option>
+              <option value="priceDesc">Precio mayor a menor</option>
+              <option value="discount">Mayor descuento</option>
+            </select>
+          </div>
+          <div id="catalog-grid" class="product-grid"></div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/productos.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const state = {
+        category: params.get("categoria") || "",
+        search: params.get("q") || "",
+        offer: params.get("oferta") === "1",
+        min: "",
+        max: "",
+        color: "",
+        size: "",
+        type: "",
+        discount: false,
+        sort: "recent",
+      };
+
+      const $ = (id) => document.getElementById(id);
+      const categoryNames = {
+        hombre: "Hombre",
+        mujer: "Mujer",
+        nino: "Niño",
+        nina: "Niña",
+      };
+
+      function applyCatalog() {
+        let result = productos.filter((p) => {
+          const text =
+            `${p.nombre} ${p.marca} ${p.tipo} ${p.descripcion}`.toLowerCase();
+          const searchOK =
+            !state.search || text.includes(state.search.toLowerCase());
+          const catOK = !state.category || p.categoria === state.category;
+          const minOK = !state.min || p.precio >= Number(state.min);
+          const maxOK = !state.max || p.precio <= Number(state.max);
+          const colorOK = !state.color || p.colores.includes(state.color);
+          const sizeOK = !state.size || p.tallas.includes(Number(state.size));
+          const typeOK = !state.type || p.tipo === state.type;
+          const discountOK = !state.discount || p.descuento > 0;
+          return (
+            searchOK &&
+            catOK &&
+            minOK &&
+            maxOK &&
+            colorOK &&
+            sizeOK &&
+            typeOK &&
+            discountOK
+          );
+        });
+
+        if (state.sort === "priceAsc")
+          result.sort((a, b) => a.precio - b.precio);
+        if (state.sort === "priceDesc")
+          result.sort((a, b) => b.precio - a.precio);
+        if (state.sort === "discount")
+          result.sort((a, b) => b.descuento - a.descuento);
+        renderProductGrid(result, "catalog-grid");
+        $("product-count").textContent =
+          `${result.length} producto${result.length === 1 ? "" : "s"} encontrado${result.length === 1 ? "" : "s"}`;
+        $("catalog-title").textContent = state.category
+          ? categoryNames[state.category]
+          : state.offer
+            ? "Ofertas"
+            : "Todos los zapatos";
+      }
+
+      function syncControls() {
+        $("filter-category").value = state.category;
+        $("search-input").value = state.search;
+        $("filter-discount").checked = state.discount || state.offer;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        syncControls();
+        applyCatalog();
+
+        $("catalog-search").addEventListener("submit", (e) => {
+          e.preventDefault();
+          state.search = $("search-input").value.trim();
+          applyCatalog();
+        });
+        $("filter-category").addEventListener("change", (e) => {
+          state.category = e.target.value;
+          applyCatalog();
+        });
+        $("min-price").addEventListener("input", (e) => {
+          state.min = e.target.value;
+          applyCatalog();
+        });
+        $("max-price").addEventListener("input", (e) => {
+          state.max = e.target.value;
+          applyCatalog();
+        });
+        $("filter-color").addEventListener("change", (e) => {
+          state.color = e.target.value;
+          applyCatalog();
+        });
+        $("filter-size").addEventListener("change", (e) => {
+          state.size = e.target.value;
+          applyCatalog();
+        });
+        $("filter-type").addEventListener("change", (e) => {
+          state.type = e.target.value;
+          applyCatalog();
+        });
+        $("filter-discount").addEventListener("change", (e) => {
+          state.discount = e.target.checked;
+          applyCatalog();
+        });
+        $("sort-products").addEventListener("change", (e) => {
+          state.sort = e.target.value;
+          applyCatalog();
+        });
+        $("clear-filters").addEventListener("click", () => {
+          Object.assign(state, {
+            category: "",
+            search: "",
+            offer: false,
+            min: "",
+            max: "",
+            color: "",
+            size: "",
+            type: "",
+            discount: false,
+            sort: "recent",
+          });
+          syncControls();
+          applyCatalog();
+        });
+        $("open-filters").addEventListener("click", () =>
+          $("filters-panel").classList.add("open"),
+        );
+        $("close-filters").addEventListener("click", () =>
+          $("filters-panel").classList.remove("open"),
+        );
+      });
+      $("filters-panel")?.classList.remove("open");
+    </script>
+  </body>
+</html>
